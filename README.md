@@ -8,3 +8,6 @@ System that streamlines the appointment scheduling process in hospitals by autom
 - Vikash Kaushik
 - Nandini
 - Khushi
+
+
+## *College* Name: Akn
