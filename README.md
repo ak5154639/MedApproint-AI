@@ -10,4 +10,4 @@ System that streamlines the appointment scheduling process in hospitals by autom
 - Khushi
 
 
-## *College* Name: Akn
+## College Name: University Institute of Engineering and technology, MDU Rohtak
