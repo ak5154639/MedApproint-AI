@@ -73,6 +73,23 @@ def register_patient(request):
     else:
         return render(request, "appointApp/register-patient.html")
 
+def contact_us(request):
+    if request == "POST":
+        pass
+    else:
+        return render(request, "appointApp/contact-us.html")
+
+def about_us(request):
+    if request == "POST":
+        pass
+    else:
+        return render(request, "appointApp/about-us.html")
+
+def appointment(request):
+    if request == "POST":
+        pass
+    else:
+        return render(request, "appointApp/appointment.html")
 
 def login_view(request):
     if request.method == "POST":

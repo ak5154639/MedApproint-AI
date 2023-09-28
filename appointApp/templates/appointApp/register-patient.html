@@ -6,11 +6,7 @@
 
 {% block body %}
 <div class="col-lg-6 wow fadeInUp mx-auto" data-wow-delay="0.5s">
-<<<<<<< HEAD
-    <h2 class="display-2 text-center">Patient Registration</h2>
-=======
     <h2 class="display-2 text-center"> Patient Registration </h2>
->>>>>>> mukesh
     <div class="bg-light rounded h-100 d-flex align-items-center p-5">
         <form action="/register-patient" id="register-patient" method="GET">
             <div class="row g-3">
@@ -22,29 +18,18 @@
                     <input type="email" class="form-control border-0" name="email" placeholder="Your Email" style="height: 55px;">
                 </div>
                 <div class="col-12 col-sm-6">
-                    <input type="text" class="form-control border-0" name="number" placeholder="Your Mobile" style="height: 55px;">
+                    <input type="text"  class="form-control border-0" name="number" placeholder="Your Mobile" style="height: 55px;">
                 </div>
-<<<<<<< HEAD
-                <div class="col-12 col-sm-6">
-                    <input type="text" class="form-control border-0" name="pincode" id="pincodeField" placeholder="Your Address Pincode" style="height: 55px;">
-                    <small id="pincode-message">Type your pincode to get your locality.</small>
-                </div>
-                <div class="col-12 col-sm-6">
-                    <input type="text" class="form-control border-0" name="city" id="cityField" placeholder="District" style="height: 55px;">
-                </div>
-                <div class="col-12 col-sm-6">
-                    <input type="text" class="form-control border-0" name="state" id="stateField" placeholder="State" style="height: 55px;">
-                </div>
-=======
 
->>>>>>> mukesh
                 <div class="col-12 col-sm-6">
                     <div class="date" id="date" data-target-input="nearest">
                         <input type="text"
                             class="form-control border-0 datetimepicker-input"
-                            placeholder="Choose Date of Birth" data-target="#date" data-toggle="datetimepicker" style="height: 55px;">
+                            placeholder="Choose Date of Birth" name="birthdate" data-target="#date" data-toggle="datetimepicker" style="height: 55px;">
+                            
                     </div>
                 </div>
+               
                 <div class="col-12 col-sm-6">
                     <select class="form-select border-0" style="height: 55px;">
                         <option selected>Choose Gender</option>
@@ -124,29 +109,26 @@
                 <!-- Date input ends here -->
                 <div class="col-12">
                     <textarea class="form-control border-0" rows="2" placeholder="Current local Address."></textarea>
+                </div>
+                <div class="col-12">
+                    <textarea class="form-control border-0" rows="5" placeholder="Describe yourself."></textarea>
+                </div>
+                <div class="col-12">
 
-<<<<<<< HEAD
-=======
                 </div>
                 <div class="col-12">
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
+
                     <textarea class="form-control border-0" rows="5" placeholder="Describe yourself."></textarea>
->>>>>>> 9aa3004 (3 commit)
+
                 </div>
                 
                 <div class="col-12">
-<<<<<<< HEAD
+
                     <textarea class="form-control border-0" rows="5" placeholder="Describe yourself."></textarea>
                 </div>
                 
                 <div class="col-12">
-=======
->>>>>>> f99feed (ssecond commit)
-=======
->>>>>>> f99feed (ssecond commit)
->>>>>>> mukesh
+
                     <button class="btn btn-primary w-100 py-3" id="submit" type="submit">Register Patient</button>
                 </div>
             </div>
