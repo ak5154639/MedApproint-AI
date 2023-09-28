@@ -5,10 +5,12 @@
 {% endblock %}
 
 {% block body %}
-<div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+<div class="col-lg-6 wow fadeInUp mx-auto" data-wow-delay="0.5s">
+    <h2 class="display-2 text-center"> Patient Registration </h2>
     <div class="bg-light rounded h-100 d-flex align-items-center p-5">
-        <form action="/register-doctor" id="register-doctor" method="GET">
+        <form action="/register-patient" id="register-patient" method="GET">
             <div class="row g-3">
+
                 <div class="col-12 col-sm-6">
                     <input type="text" class="form-control border-0" name="name" placeholder="Your Name" style="height: 55px;">
                 </div>
@@ -18,9 +20,7 @@
                 <div class="col-12 col-sm-6">
                     <input type="text" class="form-control border-0" name="number" placeholder="Your Mobile" style="height: 55px;">
                 </div>
-                <div class="col-12 col-sm-6">
-                    <input type="text" class="form-control border-0" name="pincode" id="pincodeField" placeholder="Your Address Pincode" style="height: 55px;">
-                </div>
+
                 <div class="col-12 col-sm-6">
                     <div class="date" id="date" data-target-input="nearest">
                         <input type="text"
@@ -36,7 +36,59 @@
                         <option value="O">Other</option>
                     </select>
                 </div>
+                <div class="col-12 col-sm-6">
+                    <input type="text" class="form-control border-0" name="pincode" id="pincodeField" placeholder="Your Address Pincode" style="height: 55px;">
+                    <small id="pincode-message">Type your pincode to get your State and District.</small>
+                </div>
+                <script>
+                    document.addEventListener("1", ()=>{
+                        document.querySelector("#submit").addEventListener("click", (e)=>{
+                            e.preventDefault();
+                        })
+                
+                    })
+                    document.querySelector("#pincodeField").addEventListener('input', (event) =>{
+                    const pincode=event.target.value;
+                    const url = "https://api.data.gov.in/resource/9115b89c-7a80-4f54-9b06-21086e0f0bd7?api-key=579b464db66ec23bdd000001cdd3946e44ce4aad7209ff7b23ac571b&format=json&filters%5Bpincode%5D="+pincode;
+                    fetch(url)
+                    .then((response) => {
+                        if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                        }
 
+                        return response.json();
+                    })
+                    .then((response) => {
+                        const pincode = event.target.value;
+                        if (pincode.length == 6){
+                            const url = "https://api.data.gov.in/resource/6176ee09-3d56-4a3b-8115-21841576b2f6?api-key=579b464db66ec23bdd000001cdd3946e44ce4aad7209ff7b23ac571b&format=json&filters%5Bpincode%5D="+pincode;
+                            fetch(url)
+                            .then((response) => {
+                                if (!response.ok) {
+                                    throw new Error(`HTTP error! Status: ${response.status}`);
+                                }
+                                
+                                return response.json();
+                            })
+                            .then((response) => {
+                                const record = response.records[0];
+                                document.querySelector("#stateField").value =  record.statename;
+                                document.querySelector("#cityField").value = record.districtname;
+                            });
+                        }
+                        else {
+                            document.querySelector("#stateField").value =  "";
+                            document.querySelector("#cityField").value = "";   
+                        }
+                    });
+                })
+                </script>
+                <div class="col-12 col-sm-6">
+                    <input type="text" class="form-control border-0" name="city" id="cityField" placeholder="District" style="height: 55px;">
+                </div>
+                <div class="col-12 col-sm-6">
+                    <input type="text" class="form-control border-0" name="state" id="stateField" placeholder="State" style="height: 55px;">
+                </div>
                 <!-- Date Input -->
                 <!-- <div class="col-12 col-sm-6">
                     <div class="date" id="date" data-target-input="nearest">
@@ -54,8 +106,13 @@
                 </div> -->
                 <!-- Date input ends here -->
                 <div class="col-12">
+                    <textarea class="form-control border-0" rows="2" placeholder="Current local Address."></textarea>
+
+                </div>
+                <div class="col-12">
                     <textarea class="form-control border-0" rows="5" placeholder="Describe yourself."></textarea>
                 </div>
+                
                 <div class="col-12">
                     <button class="btn btn-primary w-100 py-3" id="submit" type="submit">Register Patient</button>
                 </div>
