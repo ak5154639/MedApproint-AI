@@ -72,24 +72,26 @@
 
     })
     document.querySelector("#pincodeField").addEventListener('input', (event) =>{
-        const pincode=event.target.value;
-        const url = "https://api.data.gov.in/resource/9115b89c-7a80-4f54-9b06-21086e0f0bd7?api-key=579b464db66ec23bdd00000151c891a7ec044801538b2d8ce338ec6d&format=json&filters%5Bpincode%5D="+pincode;
-        fetch(url, {
-        method: "GET",
-        withCredentials: true,
-        headers: {
-            "X-Auth-Token": "579b464db66ec23bdd00000151c891a7ec044801538b2d8ce338ec6d",
-            "Content-Type": "application/json"
-        },
-        
-        })
-        .then(resp => resp.json())
-        .then(function(data) {
-            console.log(data);
-        })
-        .catch(function(error) {
-            console.log(error);
-        });
+        const pincode = event.target.value;
+        if (pincode.length == 6){
+            const url = "https://api.data.gov.in/resource/6176ee09-3d56-4a3b-8115-21841576b2f6?api-key=579b464db66ec23bdd000001cdd3946e44ce4aad7209ff7b23ac571b&format=json&filters%5Bpincode%5D="+pincode;
+            fetch(url)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                
+                return response.json();
+            })
+            .then((response) => {
+                const record = response.records[0];
+                document.querySelector("#stateField").value =  record.statename;
+                document.querySelector("#cityField").value = record.districtname;
+            });
+        } else {
+            document.querySelector("#stateField").value =  "";
+            document.querySelector("#cityField").value = "";   
+        }
     })
 </script>
 {% endblock %}
