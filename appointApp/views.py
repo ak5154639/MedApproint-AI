@@ -73,7 +73,6 @@ def register_patient(request):
     else:
         return render(request, "appointApp/register-patient.html")
 
-<<<<<<< HEAD
 def contact_us(request):
     if request == "POST":
         pass
@@ -91,7 +90,6 @@ def appointment(request):
         pass
     else:
         return render(request, "appointApp/appointment.html")
-=======
 
 def login_view(request):
     if request.method == "POST":
@@ -117,4 +115,3 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse("index"))
->>>>>>> main
