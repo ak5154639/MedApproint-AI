@@ -1,0 +1,71 @@
+{% extends 'appointApp/layout.html' %}
+
+{% block subtitile %}
+    Login
+{% endblock %}
+
+{% block body %}
+<div class="col-lg-6 wow fadeInUp mx-auto" data-wow-delay="0.5s">
+    <h2 class="display-2 text-center">Login</h2>
+    <h3 class="alert alert-primary">Haven't user credentials? <a href="register-doctor">Register as Doctor</a> or <a href="register-patient">Register as Patient</a></h3>
+    <div class="bg-light rounded h-100 d-flex align-items-center p-5">
+        <form action="/login" id="login" method="POST">
+            {% csrf_token %}
+            <div class="row g-3">
+                {% if message %}
+                    <div class="alert alert-danger">{{message}}</div>
+                {% endif %}
+                
+                <div class="col-12 col-sm-6">
+                    <input required type="text" class="form-control border-0" name="email" placeholder="Your Email" style="height: 55px;">
+                </div>
+                <div class="col-12 col-sm-6">
+                    <input required type="password" class="form-control border-0" name="password" placeholder="Password" style="height: 55px;">
+                </div>
+                
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-primary w-100 py-3" id="submit" type="submit">Login</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+<script>
+    
+    document.addEventListener("DOMContentLoaded", ()=>{
+        document.querySelector("#submit").addEventListener("click", (e)=>{
+            // e.preventDefault();
+        })
+
+        
+    })
+    
+    document.querySelector("#pincodeField").addEventListener('input', (event) =>{
+        const pincode = event.target.value;
+        if (pincode.length == 6){
+            const url = "https://api.data.gov.in/resource/6176ee09-3d56-4a3b-8115-21841576b2f6?api-key=579b464db66ec23bdd000001cdd3946e44ce4aad7209ff7b23ac571b&format=json&filters%5Bpincode%5D="+pincode;
+            fetch(url)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                
+                return response.json();
+            })
+            .then((response) => {
+                const record = response.records[0];
+                document.querySelector("#stateField").value =  record.statename;
+                document.querySelector("#cityField").value = record.districtname;
+            });
+        } else {
+            document.querySelector("#stateField").value =  "";
+            document.querySelector("#cityField").value = "";   
+        }
+    })
+</script>
+{% endblock %}
