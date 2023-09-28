@@ -116,7 +116,6 @@
             })
             .then((response) => {
                 const record = response.records[0];
-                console.log(response.records);
                 document.querySelector("#stateField").value =  record.statename;
                 document.querySelector("#cityField").value = record.districtname;
             });
