@@ -1,4 +1,4 @@
-# MedApproint-AI
+# MedAppoint-AI
 System that streamlines the appointment scheduling process in hospitals by automating the process of identifying doctor availability and appointment slot 
 <<<<<<< HEAD
 
@@ -14,6 +14,10 @@ System that streamlines the appointment scheduling process in hospitals by autom
 <<<<<<< HEAD
 
 
+<<<<<<< HEAD
 ## *College* Name: Akn
 =======
 >>>>>>> 92232dc (JUY)
+=======
+## College Name: University Institute of Engineering and technology, MDU Rohtak
+>>>>>>> refs/remotes/origin/main
